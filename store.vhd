@@ -161,6 +161,7 @@ begin
 			when OP_STORE =>
 				-- put control for store instruction here
 		     memwrite <= '1';
+		     regwrite <= '1';
                      op2sel <= "11";
                      wbsel <= '0';
                      alu_func<= ALU_ADD;
