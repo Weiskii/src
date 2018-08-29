@@ -89,6 +89,16 @@ begin
         	dout => ir);
 
 	-- Lab 4: instantiate dmem here
+		     
+		     
+  dmem0:dmem port map(
+   reset => reset,
+   clk => clk,
+   raddr => alu_out(5 downto 0),
+   dout => dmem_out,
+   waddr => alu_out(5 downto 0),
+   din => reg_B,
+   we => memwrite );
 
 	rf0: regfile port map(
 	reset => reset,
@@ -150,6 +160,10 @@ begin
 
 			when OP_STORE =>
 				-- put control for store instruction here
+		     memwrite <= '1';
+                     op2sel <= "11";
+                     wbsel <= '0';
+                     alu_func<= ALU_ADD;
 
 			when others => null;
 		end case;
